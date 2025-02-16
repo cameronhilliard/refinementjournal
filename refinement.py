@@ -3,29 +3,27 @@ from datetime import datetime
 import json
 
 # Description: A simplistic, command-line journal application to record and manage daily entries.
+# Date: 2025-02-15
 
+journal_entries = []
+
+def view_entries():
+    readfile = open("journal.txt", "r")
+    print(readfile.read())
 
 def add_entry():
-    print("\nWrite Journal Entry")
+    print("\nCreate Journal Entry")
     timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
-   
-    journal_entry = input(f"{timestamp} > ")
-
-    journal_entry_json = {
-        'time': timestamp,
-        'journal_entry': journal_entry
-    }
-
-    try:
-        with open('journal.json', 'r') as f:
-            json_data = json.load(f)
-    except FileNotFoundError:
-        json_data = []
-    
-    json_data.append(journal_entry)
-
-# def view_entries():
-#     print(journal_entries)
+    with open("journal.txt", "a") as file:
+        while True:
+            journal_entry = input(f"{timestamp} > ")
+            if journal_entry == "ESC":
+                print("Entry Saved.")
+                break
+            timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
+            time_input = f"{timestamp} - { journal_entry }"
+            file.write(time_input + "\n")
+            file.close()
 
 def main():
     while True:
