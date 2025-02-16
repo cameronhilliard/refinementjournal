@@ -19,11 +19,12 @@ def add_entry():
             journal_entry = input(f"{timestamp} > ")
             if journal_entry == "ESC":
                 print("Entry Saved.")
+                file.close()
                 break
             timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
             time_input = f"{timestamp} - { journal_entry }"
             file.write(time_input + "\n")
-            file.close()
+            
 
 def main():
     while True:
