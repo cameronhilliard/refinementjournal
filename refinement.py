@@ -1,6 +1,8 @@
 import os
-from datetime import datetime
 import json
+import time
+from datetime import datetime
+
 
 # Description: A simplistic, command-line journal application to record and manage daily entries.
 # Date: 2025-02-15
@@ -8,8 +10,8 @@ import json
 journal_entries = []
 
 def view_entries():
-    readfile = open("journal.txt", "r")
-    print(readfile.read())
+    with open("journal.txt", "r") as readfile:
+        print(readfile.read())
 
 def add_entry():
     print("\nCreate Journal Entry")
@@ -41,7 +43,10 @@ def main():
             print("View Entries Selected")
             view_entries()
         elif user_choice == "3":
-            print("Exiting")
+
+            print("Goodbye for now.")
+            
+            time.sleep(1)
             break
         else:
             print("Invalid Selection, Try again.")
