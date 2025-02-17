@@ -16,15 +16,17 @@ def view_entries():
 def add_entry():
     print("\nCreate Journal Entry")
     timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
+    line_count = 1
     with open("journal.txt", "a") as file:
         while True:
-            journal_entry = input(f"{timestamp} > ")
+            journal_entry = input(f"{line_count}. {timestamp} - ")
+            line_count = line_count + 1
             if journal_entry == "ESC":
                 print("Entry Saved.")
                 file.close()
                 break
             timestamp = datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
-            time_input = f"{timestamp} - { journal_entry }"
+            time_input = f"{line_count}. {timestamp} - { journal_entry }"
             file.write(time_input + "\n")
             
 
